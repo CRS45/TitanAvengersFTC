@@ -42,10 +42,11 @@ public class limelight extends OpMode {
         limelight.updateRobotOrientation(orientation.getYaw());
         LLResult llResult= limelight.getLatestResult();
         if (llResult != null && llResult.isValid()) {
-            Pose3D botPose = llResult.getBotpose_MT2();
-            telemetry.addData("Tx", llResult.getTx());
-            telemetry.addData("Ty", llResult.getTy());
-            telemetry.addData("Ta", llResult.getTa());
+            Pose3D botpose = llResult.getBotpose_MT2();
+            telemetry.addData("Target X", llResult.getTx());
+            telemetry.addData("Target Y", llResult.getTy());
+            telemetry.addData("Target Area", llResult.getTa());
+            telemetry.addData("Bot Pose", botpose.toString());
         }
     }
 
