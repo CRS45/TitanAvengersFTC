@@ -14,6 +14,7 @@ public class Drive extends OpMode {
     DcMotor geckoWheel;
     DcMotor sushiroll;
     DcMotor flywheel;
+    double strafe;
     @Override
     public void init() {
         motorFL = hardwareMap.get(DcMotor.class, "driveFL");
@@ -34,16 +35,25 @@ public class Drive extends OpMode {
     public void loop() {
         ForwardBackward(-(gamepad1.left_stick_y));
         if (gamepad1.left_trigger>0.5) {
-            intakeBall(0.5);
+            intakeBall(1);
         } else {
             intakeBall(0);
         }
         if (gamepad1.right_trigger>0.5) {
-            shootBall(0.5);
+            shootBall(1);
         } else {
             shootBall(0);
         }
-        rotate(-(gamepad1.left_stick_x));
+        rotate(-(gamepad1.right_stick_x));
+        double strafe = gamepad1.left_stick_x;
+        double frontLeftPower  =  strafe;
+        double backLeftPower   = -strafe;
+        double frontRightPower = -strafe;
+        double backRightPower  =  strafe;
+        motorFL.setPower(frontLeftPower);
+        motorBL.setPower(backLeftPower);
+        motorFR.setPower(frontRightPower);
+        motorBR.setPower(backRightPower);
     }
 
     public void ForwardBackward(double power) {
@@ -57,11 +67,11 @@ public class Drive extends OpMode {
         intake.setPower(power);
         geckoWheel.setPower(power);
         sushiroll.setPower(power);
-
     }
 
     public void shootBall(double power) {
         flywheel.setPower(power);
+        sushiroll.setPower(power);
     }
 
     public void rotate(double power) {
