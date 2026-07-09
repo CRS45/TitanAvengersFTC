@@ -32,13 +32,18 @@ public class Drive extends OpMode {
     }
     @Override
     public void loop() {
-        ForwardBackward(gamepad1.left_stick_y);
-        if (gamepad1.left_trigger_pressed) {
+        ForwardBackward(-(gamepad1.left_stick_y));
+        if (gamepad1.left_trigger>0.5) {
             intakeBall(0.5);
+        } else {
+            intakeBall(0);
         }
-        if (gamepad1.right_trigger_pressed) {
+        if (gamepad1.right_trigger>0.5) {
             shootBall(0.5);
+        } else {
+            shootBall(0);
         }
+        rotate(-(gamepad1.left_stick_x));
     }
 
     public void ForwardBackward(double power) {
@@ -57,5 +62,12 @@ public class Drive extends OpMode {
 
     public void shootBall(double power) {
         flywheel.setPower(power);
+    }
+
+    public void rotate(double power) {
+        motorFL.setPower(-(power));
+        motorBL.setPower(-(power));
+        motorBR.setPower(power);
+        motorFR.setPower(power);
     }
 }

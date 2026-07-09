@@ -35,10 +35,13 @@ public class Auto extends OpMode {
 
     @Override
     public void loop() {
-        intake.setPower(0.5);
-        geckoWheel.setPower(0.5);
-        sushiroll.setPower(0.5);
-        flywheel.setPower(0.5);
+
+    }
+
+    public void intakeBall(double power){
+        intake.setPower(power);
+        geckoWheel.setPower(power);
+        sushiroll.setPower(power);
     }
 
 
