@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name = "Auto", group = "OpMode")
-public class Auto extends OpMode {
+@Autonomous(name = "TurretAuto", group = "OpMode")
+public class TurretAuto extends OpMode {
     DcMotor motorFL;
     DcMotor motorFR;
     DcMotor motorRL;
@@ -35,13 +35,14 @@ public class Auto extends OpMode {
 
     @Override
     public void loop() {
-
+        intakeLaunchBall(1);
     }
 
-    public void intakeBall(double power){
+    public void intakeLaunchBall(double power){
         intake.setPower(power);
         geckoWheel.setPower(power);
         sushiroll.setPower(power);
+        flywheel.setPower(power);
     }
 
 
