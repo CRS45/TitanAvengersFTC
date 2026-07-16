@@ -45,15 +45,7 @@ public class Drive extends OpMode {
             shootBall(0);
         }
         rotate(-(gamepad1.right_stick_x));
-        double strafe = gamepad1.left_stick_x;
-        double frontLeftPower  =  strafe;
-        double backLeftPower   = -strafe;
-        double frontRightPower = -strafe;
-        double backRightPower  =  strafe;
-        motorFL.setPower(frontLeftPower);
-        motorBL.setPower(backLeftPower);
-        motorFR.setPower(frontRightPower);
-        motorBR.setPower(backRightPower);
+        strafing(gamepad1.left_stick_x);
     }
 
     public void ForwardBackward(double power) {
@@ -79,5 +71,12 @@ public class Drive extends OpMode {
         motorBL.setPower(-(power));
         motorBR.setPower(power);
         motorFR.setPower(power);
+    }
+
+    public void strafing(double power) {
+        motorFL.setPower(power);
+        motorFR.setPower(-power);
+        motorBL.setPower(-power);
+        motorBR.setPower(power);
     }
 }
