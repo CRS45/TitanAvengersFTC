@@ -34,12 +34,12 @@ public class Drive extends OpMode {
     @Override
     public void loop() {
         ForwardBackward(-(gamepad1.left_stick_y));
-        if (gamepad2.left_trigger>0.5) {
+        if (gamepad1.left_trigger>0.5) {
             intakeBall(1);
         } else {
             intakeBall(0);
         }
-        if (gamepad2.right_trigger>0.5) {
+        if (gamepad1.right_trigger>0.5) {
             shootBall(1);
         } else {
             shootBall(0);
